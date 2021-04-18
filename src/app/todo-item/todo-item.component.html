@@ -1,0 +1,5 @@
+<div [class.completed]="model.completed">
+    {{model.description}}
+    <button (click)="remove(model)" >X</button>
+    <button (click)="toggle(model)">V</button>
+</div>

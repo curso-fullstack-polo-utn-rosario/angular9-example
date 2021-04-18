@@ -1,10 +1,5 @@
 
-<input type="text" #addInput > <button (click)="add(addInput)">Agregar</button>
+<todo-form (newTask)="add($event)"></todo-form>
 
-<ul>
-  <li *ngFor="let item of list" [class.completed]="item.completed">
-    {{item.description}}
-    <button (click)="remove(item)" >X</button>
-    <button (click)="toggle(item)">V</button>
-  </li>
-</ul>
+<todo-item *ngFor="let item of list" [model]="item" (delete)="remove(item)"></todo-item>
+
