@@ -1,9 +1,26 @@
 
+<button (click)="loadTags()">Cargar Tags</button>
+<button (click)="login()">  Login</button>
+
+<div *ngFor="let tag of tags">
+    <a href="javascript:void(0)" (click)="loadTagArticles(tag)" >{{tag}}</a>
+</div>
+
+
+<div *ngIf="loadingArticles" class="loader">Loading Articles</div>
+<div *ngIf="articlesError" >Error cargando Articles</div>
+
 <div *ngFor="let article of articles">
     <h1>{{article.title}} </h1>
     <p>{{article.body}}</p>
-</div>
+    <button (click)="loadComments(article)">Cargar comentarios</button>
+    <div *ngFor="let comment of article.comments">
+        {{comment.body}} 
+    </div>
+    <h3>Agregar comentario</h3>
+    <textarea #comment>
 
-<button (click)="loadArticles()">Cargar</button>
-{{tags | json}}
-<button (click)="loadTags()">Cargar Tags</button>
+    </textarea>
+    <button (click)="saveComment(article, comment)">Guardar</button>
+
+</div>
