@@ -8,7 +8,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class Component1Component implements OnInit {
   id: any;
-  suscription: any;
 
   constructor(
     private router: Router,
@@ -18,13 +17,11 @@ export class Component1Component implements OnInit {
   ngOnInit(): void {
     console.log(this.activatedRoute.snapshot);
     this.id = this.activatedRoute.snapshot.params
-    this.suscription = this.activatedRoute.params.subscribe(params => this.id = params.id);
+  this.activatedRoute.params.subscribe(params => this.id = params.id);
   }
   navigate() {
 
     setTimeout(()=> this.router.navigate(['ruta2', this.id]) , 2000);
   }
-  ngOnDestroy() {
-    this.suscription.unsuscribe();
-  }
+
 }
