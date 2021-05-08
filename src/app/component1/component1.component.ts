@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-component1',
@@ -7,13 +7,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./component1.component.scss']
 })
 export class Component1Component implements OnInit {
+  id: any;
+  suscription: any;
 
-  constructor(private router: Router) { }
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute
+    ) { }
 
   ngOnInit(): void {
+    console.log(this.activatedRoute.snapshot);
+    this.id = this.activatedRoute.snapshot.params
+    this.suscription = this.activatedRoute.params.subscribe(params => this.id = params.id);
   }
   navigate() {
-    setTimeout(()=> this.router.navigate(['ruta2']) , 2000);
-  }
 
+    setTimeout(()=> this.router.navigate(['ruta2', this.id]) , 2000);
+  }
+  ngOnDestroy() {
+    this.suscription.unsuscribe();
+  }
 }

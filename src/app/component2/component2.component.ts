@@ -8,11 +8,15 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class Component2Component implements OnInit {
 
-  constructor(private route: ActivatedRoute) { }
+  ruta = '/ruta1';
+
+  constructor(private activatedRoute: ActivatedRoute) { }
 
   identifier = 'Nada';
   ngOnInit(): void {
-    this.identifier = this.route.snapshot.params.identificador;
+    this.activatedRoute.params.subscribe(params => console.log(params.id));
+
+    this.identifier = this.activatedRoute.snapshot.params.identificador;
     }
 
 }
