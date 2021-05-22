@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from './local-storage.service';
+import { TodoItem } from './model/todo-item';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoService {
   
-  list = [];
+  list :Array<TodoItem>= [];
   lastItemId = 0;
 
   constructor(private storage: LocalStorageService) { }
@@ -33,5 +34,10 @@ export class TodoService {
 
   getName() {
     return 'TodoService 123' + this.storage.getName();
+  }
+
+  edit(task:TodoItem){
+    let index = this.list.findIndex((x=>x.id === task.id));
+    this.list[index].description = task.description;
   }
 }

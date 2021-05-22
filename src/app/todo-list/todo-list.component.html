@@ -2,10 +2,14 @@
     <li
       *ngFor="let task of list" [class.completed] = "task.isCompleted"
       class="list-item">
-      {{task.description}}
+      <span  [hidden]="!task.hiddenEdit" >{{task.description}}</span>
+      
+      <input type="text" [value]="task.description" [hidden]="task.hiddenEdit" #edited (keyup.enter)="onSaveEditedTask(edited.value, task)"  >
       <span>
         <button class="btn btn-danger" (click)="removeItem(task.id)">X</button>
         <button class="btn btn-success" (click)="completeTask(task)">V</button>
+        <button class="btn btn-secondary" [hidden]="!task.hiddenEdit" (click)="onEditTask(task)">Edit</button>
+        <button class="btn btn-secondary"[hidden]="task.hiddenEdit" (click)="onSaveEditedTask(edited.value, task)">Save</button>
       </span>
     </li>
   </ul>

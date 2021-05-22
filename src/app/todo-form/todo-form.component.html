@@ -1,9 +1,15 @@
 
-<input type="text" #taskDescription class="add-todo">
+<input type="text" [formControl]= "taskDescription" (keyup.enter)="save()"class="add-todo">
+<div class="alert alert-danger mt-3" *ngIf="taskDescription.touched && taskDescription.invalid">Task description required</div>
 
+
+<input type="text" [formControl]= "taskUrl" (keyup.enter)="save()"  class="add-todo mt-3">
+<div class="alert alert-danger mt-3" *ngIf="taskUrl.touched && taskUrl.invalid">Enter a valid URL</div>
+
+<br>
 <button
-  class="btn btn-primary"
-  (click)="save(taskDescription)">
+  class="btn btn-primary mt-3 "
+  (click)="save()">
   Create
 </button>
 

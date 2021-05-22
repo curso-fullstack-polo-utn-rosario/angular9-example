@@ -3,6 +3,7 @@
   [list]="getList()"
   (itemRemoved)="onTodoItemRemoved($event)"
   (itemStateChanged)="onItemStateChanged($event)"
+  (itemEditSaved)="onItemEditSaved($event)"
 >
 </app-todo-list>
 <app-todo-footer

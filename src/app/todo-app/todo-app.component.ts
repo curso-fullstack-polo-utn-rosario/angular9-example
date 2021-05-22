@@ -26,4 +26,9 @@ export class TodoAppComponent  {
   onTodoItemCreated(task) {
     this.service.add(task)
   }
+  onItemEditSaved(task){
+    this.service.edit(task);
+
+  }
+
 }
